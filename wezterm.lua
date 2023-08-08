@@ -260,7 +260,7 @@ return {
   window_frame = {
     active_titlebar_bg = '#000000',
   },
-  color_scheme = 'Tango (terminal.sexy)',
+  color_scheme = 'tokyonight',
   disable_default_key_bindings = true,
   exit_behavior = 'Close',
   font = wezterm.font_with_fallback({
@@ -283,6 +283,7 @@ return {
   force_reverse_video_cursor = true,
   hide_mouse_cursor_when_typing = true,
   hide_tab_bar_if_only_one_tab = false,
+  tab_bar_at_bottom = true,
   keys = {
     { action = wezterm.action.ActivateCommandPalette, mods = 'CTRL|SHIFT', key =     'P' },
     { action = wezterm.action.CopyTo    'Clipboard' , mods = 'CTRL|SHIFT', key =     'C' },
