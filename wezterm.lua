@@ -5,6 +5,12 @@ local background_table = {}
 local colors = {}
 local tab_bar = {}
 
+-- maximize window
+wezterm.on("gui-startup", function()
+  local tab, pane, window = wezterm.mux.spawn_window{}
+  window:gui_window():maximize()
+end)
+
 -- WSL DOMAINS
 local wsl_domains = wezterm.default_wsl_domains()
 
@@ -33,8 +39,25 @@ function RandomWithWeight(t, weights)
     return nil
 end
 
-local background_name_list = {"ziluolan", "bleach", "caroline", "yan", "p5r", "bing"}
-local background_weights = {5, 5, 2, 3, 1, 2}
+-- function GetBackgroundPath()
+--   local lfs = require "lfs"
+--   local dir_path = "E:\\Photos\\steam"
+--   local file_list = {}
+--   for file in lfs.dir(dir_path) do
+--     if file ~= "." and file ~= ".." then
+--       local file_path = dir_path .. "\\" .. file
+--       if lfs.attributes(file_path, "mode") == "file" then
+--         table.insert(file_list, file_path)
+--       end
+--     end
+--   end
+--   return file_list
+-- end
+
+-- local file_list = GetBackgroundPath()
+
+local background_name_list = {"ziluolan", "caroline", "p5r", "bing"}
+local background_weights = {5, 2, 2, 2}
 
 local background_name = RandomWithWeight(background_name_list, background_weights)
 
@@ -61,7 +84,7 @@ if background_name == "ziluolan" then
         width = 'Cover',
         repeat_x = 'NoRepeat',
         repeat_y = 'NoRepeat',
-        opacity = 0.3
+        opacity = 0.6
       }
   )
 elseif background_name == "bleach" then
@@ -75,7 +98,7 @@ elseif background_name == "bleach" then
         width = 'Cover',
         repeat_x = 'NoRepeat',
         repeat_y = 'NoRepeat',
-        opacity = 0.2
+        opacity = 0.4
       }
   )
 elseif background_name == "caroline" then
@@ -89,7 +112,7 @@ elseif background_name == "caroline" then
         width = 'Cover',
         repeat_x = 'NoRepeat',
         repeat_y = 'NoRepeat',
-        opacity = 0.1
+        opacity = 0.2
       }
   )
 elseif background_name == "yan" then
@@ -103,7 +126,7 @@ elseif background_name == "yan" then
         width = 'Cover',
         repeat_x = 'NoRepeat',
         repeat_y = 'NoRepeat',
-        opacity = 0.4
+        opacity = 0.6
       }
   )
 elseif background_name == "p5r" then
@@ -117,7 +140,7 @@ elseif background_name == "p5r" then
         width = 'Cover',
         repeat_x = 'NoRepeat',
         repeat_y = 'NoRepeat',
-        opacity = 0.05
+        opacity = 0.4
       }
   )
 else
@@ -131,7 +154,7 @@ else
       width = 'Cover',
       repeat_x = 'NoRepeat',
       repeat_y = 'NoRepeat',
-      opacity = 0.2
+      opacity = 0.4
     }
   )
 end
@@ -177,6 +200,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 end
 
 return {
+  -- default_prog = {"powershell.exe", "zsh"},
   default_prog = {"powershell.exe"},
   launch_menu  = launch_menu,
   ssh_domains = ssh_domains,
@@ -277,6 +301,9 @@ return {
       style = 'Normal',
       harfbuzz_features = { 'cv29', 'cv30', 'ss01', 'ss03', 'ss06', 'ss07', 'ss09' },
     },
+    {
+      family = "SimHei",
+    }
 
   }),
   font_size = 10,
